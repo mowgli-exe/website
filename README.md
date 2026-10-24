@@ -2,8 +2,6 @@
 
 An interactive single-page web application featuring a modern, dark-themed **Bio Portfolio** and an integrated **Mini-Casino** with multiple playable games, level/XP progression, sound effects, dynamic canvas animations, and a real-time global leaderboard powered by Firebase.
 
-![Demo Banner](pfp.jpg)
-
 ## 🌐 Live Demo & Community
 * **Website:** [litecoinwallet.netlify.app](https://litecoinwallet.netlify.app/)
 * **Discord Community:** [Join our Discord](https://discord.com/invite/36EAyW5Z4F)
