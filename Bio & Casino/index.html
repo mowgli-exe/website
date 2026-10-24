@@ -1,9 +1,9 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>mowgli</title>
+<title>Bio & Casino</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: Enter-Screen, dann eine zentrierte Glaskarte auf einem unscharfen Schwarzweiss-Foto. Ansicht 1 = Bio, Ansicht 2 = Casino. Bewusst nur ein dunkler Look. */
 @property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
@@ -23,7 +23,7 @@
   --card: #F2F2F4;
   --card-ink: #0D0D12;
   --suit-red: #D8283F;
-  --font-display: "Outfit", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Chakra Petch", "Rajdhani", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 * { box-sizing: border-box; }
@@ -302,6 +302,78 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
 
 @media (max-width: 520px) { .gamegrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats3 b { font-size: .92rem; } }
 
+/* ---------- Schrift, Logo, Player ---------- */
+body { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+.name { font-weight: 700; letter-spacing: 0.02em; }
+.sp-name { font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; font-size: 1.6rem; }
+.sp-logo { width: 38px; height: 38px; margin: 0 auto 16px; display: block; color: #fff; filter: drop-shadow(0 0 12px rgba(255,255,255,.5)); }
+.sp-hint { letter-spacing: .26em; }
+.brandbar { position: absolute; top: 16px; left: 20px; right: 20px; display: flex; align-items: center; justify-content: space-between; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.brandbar .b { display: flex; align-items: center; gap: 8px; color: #D8D8E0; }
+.brandbar svg { width: 18px; height: 18px; }
+.brandbar .live { display: flex; align-items: center; gap: 6px; }
+.brandbar .live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--win); box-shadow: 0 0 8px var(--win); }
+.tags li, .link, .btn, .tab, .chip, .pick, .gt b, .cas h2, .ghead h3 { font-family: var(--font-display); }
+.link { letter-spacing: .01em; }
+.gt b { font-weight: 600; letter-spacing: .02em; }
+.cas-head h2 { text-transform: uppercase; letter-spacing: .18em; font-size: 1.1rem; }
+
+.toast { bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
+.player {
+  position: fixed; z-index: 20; left: 50%; transform: translateX(-50%);
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px)); width: min(480px, calc(100% - 32px));
+  display: flex; align-items: center; gap: 12px; padding: 8px 14px 8px 8px; border-radius: 999px;
+  background: rgba(12,12,16,.82); border: 1px solid var(--edge); box-shadow: 0 20px 60px rgba(0,0,0,.6);
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); transition: opacity .8s ease .4s;
+}
+body:not(.entered) .player { opacity: 0; pointer-events: none; }
+.pbtn { flex: none; width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer; background: #fff; color: #0A0A0D; display: grid; place-items: center; }
+.pbtn svg { width: 18px; height: 18px; fill: currentColor; }
+.pbtn .ic-pause { display: none; }
+.player.playing .pbtn .ic-play { display: none; }
+.player.playing .pbtn .ic-pause { display: block; }
+.pinfo { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.ptitle { font-weight: 600; font-size: .92rem; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ptitle span { color: var(--muted); font-weight: 400; font-family: var(--font-mono); font-size: .74rem; margin-left: 6px; }
+.player input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 14px; background: transparent; margin: 0; cursor: pointer; accent-color: #fff; }
+.player input[type="range"]::-webkit-slider-runnable-track { height: 3px; border-radius: 3px; background: linear-gradient(90deg, #fff var(--p, 0%), rgba(255,255,255,.18) var(--p, 0%)); }
+.player input[type="range"]::-moz-range-track { height: 3px; border-radius: 3px; background: rgba(255,255,255,.18); }
+.player input[type="range"]::-moz-range-progress { height: 3px; border-radius: 3px; background: #fff; }
+.player input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 11px; height: 11px; border-radius: 50%; background: #fff; margin-top: -4px; box-shadow: 0 0 8px rgba(255,255,255,.7); }
+.player input[type="range"]::-moz-range-thumb { width: 11px; height: 11px; border: 0; border-radius: 50%; background: #fff; }
+.eq { flex: none; display: flex; align-items: flex-end; gap: 3px; height: 20px; }
+.eq i { width: 3px; height: 4px; border-radius: 2px; background: #fff; opacity: .85; }
+.player.playing .eq i { animation: eqb .9s ease-in-out infinite alternate; }
+.eq i:nth-child(2) { animation-delay: -.3s !important; } .eq i:nth-child(3) { animation-delay: -.6s !important; } .eq i:nth-child(4) { animation-delay: -.15s !important; }
+@keyframes eqb { 0% { height: 4px; } 100% { height: 20px; } }
+.vol { flex: none; display: flex; align-items: center; gap: 6px; width: 104px; }
+.pmute { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 0; background: transparent; color: #D8D8E0; cursor: pointer; display: grid; place-items: center; }
+.pmute:hover { background: var(--glass-hover); }
+.pmute svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.pmute .ic-off { display: none; }
+.player.muted .pmute .ic-on { display: none; }
+.player.muted .pmute .ic-off { display: block; }
+@media (max-width: 520px) { .vol input { display: none; } .vol { width: 30px; } .eq { display: none; } }
+
+/* ---------- Leaderboard ---------- */
+.lb { display: grid; gap: 10px; padding: 14px 16px 16px; border-radius: 16px; border: 1px solid var(--edge); background: rgba(0,0,0,.28); }
+.lb-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.lb .seg button { min-height: 32px; padding: 0 12px; font-size: .82rem; }
+.lb-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; }
+.lb-list li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 7px 10px; border-radius: 10px; font-size: .92rem; }
+.lb-list li.me { background: rgba(255,255,255,.09); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22); }
+.lb-list .rk { font-family: var(--font-mono); font-size: .8rem; color: var(--muted); text-align: right; }
+.lb-list li:nth-child(1) .rk { color: var(--gold); } .lb-list li:nth-child(2) .rk { color: #D6D6DE; } .lb-list li:nth-child(3) .rk { color: #D49A63; }
+.lb-list .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
+.lb-list .nm em { font-style: normal; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-left: 8px; }
+.lb-list .sc { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--gold); }
+.lb-list li.gap { grid-template-columns: 1fr; text-align: center; color: var(--muted); padding: 0; line-height: .8; }
+.lb-empty { margin: 0; color: var(--muted); font-size: .9rem; padding: 6px 2px; }
+.lb-join { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.lb-join input { flex: 1 1 140px; min-width: 0; min-height: 44px; border-radius: 12px; border: 1px solid var(--edge); background: rgba(0,0,0,.4); color: var(--fg); font-family: var(--font-display); font-size: 1rem; padding: 0 12px; }
+.lb-join .btn { min-height: 44px; }
+.lb-join[hidden] { display: none; }
+
 .glass { background: rgba(12, 12, 16, .76); }
 .gt, .wallet { background: rgba(255,255,255,.04); }
 #esp { opacity: .85; }
@@ -317,15 +389,17 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
 
 <div class="splash" id="splash" role="button" tabindex="0" aria-label="Click to enter">
   <div>
+    <svg class="sp-logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#mark"/></svg>
     <div class="sp-avatar"><img src="pfp.jpg" alt=""></div>
     <div class="sp-name">Mowgli</div>
-    <div class="sp-hint">click to enter</div>
+    <div class="sp-hint">click to enter · sound on</div>
   </div>
 </div>
 
 <main class="stage">
   <section class="view" id="view-bio" aria-label="Bio">
     <div class="glass profile">
+      <div class="brandbar"><span class="b"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#mark"/></svg>MOWGLI</span><span class="live">online</span></div>
       <div class="avatar"><div class="inner"><img src="pfp.jpg" alt="Profile picture"></div><span class="dot" title="online"></span></div>
       <h1 class="name">Mowgli</h1>
       <p class="handle">@litecoinwallet</p>
@@ -338,7 +412,7 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
         <a class="link" href="https://guns.lol/tpa" target="_blank" rel="noopener"><span class="l"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/></svg>guns.lol</span><span class="at">guns.lol/tpa ↗</span></a>
         <button class="link casino" type="button" id="to-casino"><span class="l"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/><circle cx="15" cy="9" r="1.2" fill="currentColor"/><circle cx="9" cy="15" r="1.2" fill="currentColor"/></svg>Casino</span><span class="at" id="teaser">free coins</span></button>
       </div>
-      <p class="foot">I do what i want and idgaf <3</p>
+      <p class="foot">Tap the Discord username to copy it.</p>
     </div>
   </section>
 
@@ -347,7 +421,7 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
       <div class="cas-head">
         <button class="ghostbtn" type="button" id="to-bio">← Back</button>
         <h2>Casino</h2>
-        <button class="ghostbtn" type="button" id="snd" aria-pressed="true">Sound on</button>
+        <button class="ghostbtn" type="button" id="snd" aria-pressed="true">FX on</button>
       </div>
 
       <div class="wallet">
@@ -378,6 +452,19 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
 
       <div class="lobby" id="lobby">
         <div class="gamegrid" id="gamegrid"></div>
+        
+        <section class="lb" id="lb" aria-label="Leaderboard">
+          <div class="lb-head"><span class="lbl">Leaderboard</span>
+            <div class="seg" id="lb-seg" role="group" aria-label="Rank by"><button type="button" data-s="peak" aria-pressed="true">Peak coins</button><button type="button" data-s="best" aria-pressed="false">Best win</button><button type="button" data-s="level" aria-pressed="false">Level</button></div>
+          </div>
+          <ol class="lb-list" id="lb-list"></ol>
+          <form class="lb-join" id="lb-join" autocomplete="off">
+            <label class="vh" for="lb-nick">Nickname</label>
+            <input id="lb-nick" type="text" maxlength="16" placeholder="Pick a nickname">
+            <button class="btn" id="lb-go" type="submit">Join</button>
+          </form>
+          <p class="small" id="lb-note"></p>
+        </section>
         <div><div class="lbl" style="margin-bottom:6px">Recent rounds</div><ul class="log" id="log"></ul></div>
       </div>
 
@@ -526,6 +613,28 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
   </section>
   </main>
 <div class="toast" id="toast" role="status"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="mark" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 1.5v5M16 25.5v5M1.5 16h5M25.5 16h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M9.5 21.5V11l6.5 7 6.5-7v10.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+<audio id="music" src="music.mp3" loop preload="auto"></audio>
+<div class="player" id="player" role="group" aria-label="Music player">
+  <button class="pbtn" id="pp" type="button" aria-label="Play">
+    <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+    <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z"/></svg>
+  </button>
+  <div class="pinfo">
+    <div class="ptitle">ozan<span>akh</span></div>
+    <label class="vh" for="seek">Seek</label>
+    <input type="range" id="seek" min="0" max="1000" value="0">
+  </div>
+  <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="vol">
+    <button class="pmute" id="mute" type="button" aria-label="Mute">
+      <svg class="ic-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+      <svg class="ic-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+    </button>
+    <label class="vh" for="vol">Volume</label>
+    <input type="range" id="vol" min="0" max="100" value="45">
+  </div>
+</div>
 
 <script>
 (function () {
@@ -539,7 +648,8 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
   /* ---------- Spielstand ---------- */
   var KEY = 'bio-spielecke-v2';
   var RESCUE = 300, DAY = 24 * 60 * 60 * 1000;
-  var state = { coins: 1000, bonusAt: 0, bet: 50, best: 0, sound: true, xp: 0, streak: 0, lastClaim: 0 };
+  var state = { coins: 1000, bonusAt: 0, bet: 50, best: 0, sound: true, xp: 0, streak: 0, lastClaim: 0, peak: 1000, nick: '' };
+  var lb = { db: null, uid: null, canWrite: null, rows: [], sort: 'peak', pushed: '', pushing: false, timer: 0, err: '', ready: false };
   try {
     var sv = JSON.parse(localStorage.getItem(KEY));
     if (sv && typeof sv.coins === 'number') {
@@ -549,11 +659,13 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
       state.xp = Math.max(0, Math.floor(Number(sv.xp) || 0));
       state.streak = Math.max(0, Math.floor(Number(sv.streak) || 0));
       state.lastClaim = Number(sv.lastClaim) || 0;
+      state.peak = Math.max(state.coins, 1000, Math.floor(Number(sv.peak) || 0));
+      state.nick = typeof sv.nick === 'string' ? sv.nick.slice(0, 16) : '';
       if (sv.sound === false) state.sound = false;
       state.bet = Math.max(1, Math.floor(Number(sv.bet) || 50));
     }
   } catch (e) {}
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function save() { if (state.coins > state.peak) state.peak = state.coins; try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function lvlOf(xp) { return Math.floor(Math.sqrt(xp / 300)) + 1; }
   function lvlStart(l) { return 300 * (l - 1) * (l - 1); }
 
@@ -781,11 +893,48 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
     window.addEventListener('resize', function () { size(); if (reduce) frame(4000); });
   })();
 
+
+  /* ---------- Musik ---------- */
+  var mus = $('music'), plr = $('player'), MK = 'bio-music-v1', mp = { vol: 0.45, muted: false };
+  try { var ms = JSON.parse(localStorage.getItem(MK)); if (ms) { if (typeof ms.vol === 'number') mp.vol = clamp(ms.vol, 0, 1); mp.muted = !!ms.muted; } } catch (e) {}
+  function mSave() { try { localStorage.setItem(MK, JSON.stringify(mp)); } catch (e) {} }
+  function mUi() {
+    mus.volume = mp.vol; mus.muted = mp.muted;
+    $('vol').value = Math.round(mp.vol * 100); $('vol').style.setProperty('--p', Math.round(mp.vol * 100) + '%');
+    plr.classList.toggle('muted', mp.muted || mp.vol === 0);
+    plr.classList.toggle('playing', !mus.paused);
+    $('pp').setAttribute('aria-label', mus.paused ? 'Play' : 'Pause');
+    $('mute').setAttribute('aria-label', mp.muted ? 'Unmute' : 'Mute');
+  }
+  function playMusic() {
+    mUi();
+    var p = mus.play();
+    if (p && p.catch) p.catch(function () { toast('Tap play to start the music'); mUi(); });
+  }
+  $('pp').addEventListener('click', function () {
+    if (mus.paused) { var p = mus.play(); if (p && p.catch) p.catch(function () {}); } else mus.pause();
+  });
+  ['play', 'pause', 'ended'].forEach(function (ev) { mus.addEventListener(ev, mUi); });
+  var seeking = false;
+  mus.addEventListener('timeupdate', function () {
+    if (seeking || !mus.duration) return;
+    var v = Math.round(mus.currentTime / mus.duration * 1000); $('seek').value = v; $('seek').style.setProperty('--p', (v / 10) + '%');
+  });
+  $('seek').addEventListener('input', function () {
+    seeking = true; var v = Number(this.value); this.style.setProperty('--p', (v / 10) + '%');
+    if (mus.duration) mus.currentTime = v / 1000 * mus.duration;
+  });
+  $('seek').addEventListener('change', function () { seeking = false; });
+  $('vol').addEventListener('input', function () { mp.vol = Number(this.value) / 100; if (mp.vol > 0) mp.muted = false; mSave(); mUi(); });
+  $('mute').addEventListener('click', function () { mp.muted = !mp.muted; mSave(); mUi(); });
+  mUi();
+
   /* ---------- Enter-Screen und Ansichten ---------- */
   var entered = false;
   function enter() {
     if (entered) return; entered = true;
     audio();
+    playMusic();
     $('splash').classList.add('gone');
     document.body.classList.add('entered');
     if (location.hash === '#casino') show('casino');
@@ -831,7 +980,7 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
     });
   });
 
-  var lines = ['developer', 'dma user', 'developing something', 'I Love Her'];
+  var lines = ['developer', 'dma user', 'building something new', 'here for the casino'];
   function startTyping() {
     if (reduce) return;
     var typed = $('typed'), li = 0, ci = 0, del = false;
@@ -872,7 +1021,7 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
     var l = lvlOf(state.xp), a = lvlStart(l), b = lvlStart(l + 1);
     $('lvl').textContent = 'Lv ' + l; $('lvlbar').style.width = (100 * (state.xp - a) / (b - a)).toFixed(1) + '%';
     $('xpt').textContent = fmt(state.xp - a) + ' / ' + fmt(b - a) + ' xp';
-    $('snd').textContent = state.sound ? 'Sound on' : 'Sound off';
+    $('snd').textContent = state.sound ? 'FX on' : 'FX off';
     $('snd').setAttribute('aria-pressed', String(state.sound));
     $('rescue').hidden = state.coins >= 10;
     renderBonus(); sync(); diceUpdate();
@@ -925,7 +1074,7 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
     var profit = payout - bet;
     if (profit > state.best) state.best = profit;
     logs.unshift({ g: NAMES[game], d: profit }); logs = logs.slice(0, 6);
-    save(); render(); renderLog();
+    save(); render(); renderLog(); lbSchedule();
     say(msg, text, profit > 0 ? 'win' : (payout === 0 ? 'lose' : ''));
     if (profit > 0) {
       var big = profit >= bet * 5;
@@ -1462,7 +1611,104 @@ input[type="range"] { width: 100%; accent-color: #fff; min-height: 28px; }
     })(t0);
   });
 
-  render(); bjRender(); renderHist(); showBall(0); renderLog(); crashHist(); minesRender(); diceUpdate();
+
+  /* ---------- Leaderboard ---------- */
+  function lbVal(r, s) { return s === 'peak' ? r.peak : s === 'best' ? r.best : r.level; }
+  function lbFmt(r, s) { return s === 'peak' ? fmt(r.peak) : s === 'best' ? '+' + fmt(r.best) : 'Lv ' + r.level; }
+  function lbMine() { return { id: lb.uid || '__me', name: state.nick || 'You', peak: Math.floor(state.peak), best: Math.floor(state.best), level: lvlOf(state.xp) }; }
+  function lbKey() { return [state.nick, Math.floor(state.peak), Math.floor(state.best), lvlOf(state.xp)].join('|'); }
+  function lbSchedule() {
+    if (!lb.db || !lb.uid || !state.nick || lb.canWrite === false) return;
+    clearTimeout(lb.timer); lb.timer = setTimeout(lbPush, 2500);
+  }
+  function lbPush() {
+    if (!lb.db || !lb.uid || !state.nick || lb.canWrite === false) return;
+    if (lb.pushing) { lbSchedule(); return; }
+    var k = lbKey(); if (k === lb.pushed) return;
+    lb.pushing = true;
+    var m = lbMine();
+    lb.db.doc('leaderboard/' + lb.uid).set({ name: state.nick, peak: m.peak, best: m.best, level: m.level, updated: Date.now() }).then(function () {
+      lb.pushed = k; lb.err = '';
+    }, function (e) {
+      lb.err = (e && e.code) || 'error';
+      if (lb.err === 'invalid_argument') lb.canWrite = false;
+    }).then(function () { lb.pushing = false; lbRender(); });
+  }
+  function lbRender() {
+    var list = $('lb-list'), note = $('lb-note'), join = $('lb-join'), s = lb.sort, rows, me = lbMine();
+    document.querySelectorAll('#lb-seg button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.s === s)); });
+    var live = !!lb.db && !lb.err.match(/revoked|capability|not_granted/);
+    if (live) {
+      rows = lb.rows.slice();
+      if (lb.uid && state.nick) {
+        var found = false;
+        rows.forEach(function (r) { if (r.id === lb.uid) { found = true; } });
+        if (!found) rows.push(me);
+      }
+    } else rows = state.nick ? [me] : [];
+    rows.sort(function (a, b) { return (lbVal(b, s) - lbVal(a, s)) || (b.peak - a.peak); });
+    var top = rows.slice(0, 10), myIdx = -1, i;
+    for (i = 0; i < rows.length; i++) if (lb.uid ? rows[i].id === lb.uid : rows[i].id === '__me') { myIdx = i; break; }
+    list.textContent = '';
+    function add(r, rank) {
+      var li = document.createElement('li'), rk = document.createElement('span'), nm = document.createElement('span'), sc = document.createElement('span');
+      var isMe = r.id === lb.uid || (!lb.uid && r.id === '__me');
+      if (isMe) li.className = 'me';
+      rk.className = 'rk'; rk.textContent = rank; nm.className = 'nm'; nm.textContent = r.name || 'Player'; sc.className = 'sc'; sc.textContent = lbFmt(r, s);
+      if (isMe) { var em = document.createElement('em'); em.textContent = 'you'; nm.appendChild(em); }
+      li.appendChild(rk); li.appendChild(nm); li.appendChild(sc); list.appendChild(li);
+    }
+    top.forEach(function (r, k) { add(r, k + 1); });
+    if (myIdx >= 10) {
+      var g = document.createElement('li'); g.className = 'gap'; g.textContent = '⋮'; list.appendChild(g); add(rows[myIdx], myIdx + 1);
+    }
+    if (!rows.length) {
+      var e = document.createElement('li'); e.className = 'gap'; e.style.padding = '6px 0'; e.style.lineHeight = '1.4'; e.textContent = live ? 'No players yet. Join and take rank 1.' : 'Nobody here yet.'; list.appendChild(e);
+    }
+    var cannot = !lb.db || lb.canWrite === false || !lb.uid;
+    join.hidden = cannot;
+    $('lb-go').textContent = state.nick ? 'Save name' : 'Join';
+    if (document.activeElement !== $('lb-nick')) $('lb-nick').value = state.nick;
+    if (!lb.db) note.textContent = lb.ready ? 'The shared leaderboard is not available in this view. Your own stats stay on this device.' : 'Connecting to the leaderboard …';
+    else if (!lb.uid) note.textContent = 'Sign in to join the leaderboard.';
+    else if (lb.canWrite === false) note.textContent = 'You can watch the leaderboard. Ask for contributor access to join it.';
+    else if (lb.err === 'quota_exceeded') note.textContent = 'The leaderboard is full right now.';
+    else if (lb.err) note.textContent = 'Could not save your score yet. It will retry after your next round.';
+    else note.textContent = 'Your nickname and stats are visible to everyone with access to this page.';
+  }
+  document.querySelectorAll('#lb-seg button').forEach(function (b) {
+    b.addEventListener('click', function () { lb.sort = b.dataset.s; lbRender(); });
+  });
+  $('lb-join').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = $('lb-nick').value.replace(/[\u0000-\u001F\u007F]/g, '').replace(/\s+/g, ' ').trim().slice(0, 16);
+    if (v.length < 2) { toast('Pick a nickname with at least 2 characters'); return; }
+    state.nick = v; save(); lb.pushed = ''; lbRender(); lbPush(); toast('You are on the board as ' + v);
+  });
+  (function () {
+    function done() { lb.ready = true; lbRender(); }
+    try {
+      if (!(window.claude && window.claude.use)) { done(); return; }
+      Promise.all([window.claude.use('db'), window.claude.use('user')]).then(function (r) {
+        var db = r[0], user = r[1];
+        if (!db) { done(); return; }
+        lb.db = db;
+        return Promise.all([user ? user.id() : null, user ? user.can('data.write') : null]).then(function (v) {
+          lb.uid = v[0] || null; lb.canWrite = v[1];
+          db.collection('leaderboard').orderBy('peak', 'desc').limit(100).onSnapshot(function (snap) {
+            lb.rows = snap.docs.map(function (d) {
+              var x = d.data() || {};
+              return { id: d.id, name: String(x.name || 'Player').slice(0, 16), peak: Number(x.peak) || 0, best: Number(x.best) || 0, level: Number(x.level) || 1 };
+            });
+            lb.ready = true; lbRender();
+          }, function (er) { lb.err = (er && er.code) || 'error'; lb.ready = true; lbRender(); });
+          lbSchedule(); done();
+        });
+      }).catch(done);
+    } catch (e) { done(); }
+  })();
+
+  render(); bjRender(); renderHist(); showBall(0); renderLog(); lbRender(); crashHist(); minesRender(); diceUpdate();
   drawWheel(wheelRest, null, 0); plDraw(null, null); wofDraw(); crashDraw(0, 1);
   openGame(null);
 })();
