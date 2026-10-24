@@ -66,7 +66,7 @@ Since the application is self-contained in `index.html`, running it locally is s
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git
+   git clone [https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git](https://github.com/mowgli-exe/website)
    cd YOUR_REPOSITORY_NAME
    ```
 
